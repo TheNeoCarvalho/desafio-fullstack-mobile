@@ -17,17 +17,7 @@ function Routes() {
           component={Home}
           options={{headerShown: false}}
         />
-        <Stack.Screen
-          name="Detail"
-          component={Detail}
-          options={{
-            headerRight: () => (
-              <TouchableOpacity style={{marginRight: 15}}>
-                <Text>Add</Text>
-              </TouchableOpacity>
-            ),
-          }}
-        />
+        <Stack.Screen name="Detail" component={Detail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
