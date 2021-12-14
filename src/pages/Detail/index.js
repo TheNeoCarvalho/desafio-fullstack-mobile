@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
+import axios from 'axios';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -23,11 +24,24 @@ import {
   TextRight,
 } from './styled';
 
-const Detail = ({navigation}) => {
+const Detail = ({route, navigation}) => {
   const [isModalVisible, setModalVisible] = useState(false);
-
+  const [shoe, setShoe] = useState({});
   const toggleModal = () => {
+    if (isModalVisible) {
+      setModalVisible(!isModalVisible);
+      navigation.navigate('Home');
+    }
     setModalVisible(!isModalVisible);
+  };
+
+  useEffect(() => {
+    setShoe(route.params.data);
+  }, [shoe]);
+
+  const handleBuy = async product_id => {
+    await axios.post(`http://192.168.1.3:3000/order/${product_id}`);
+    toggleModal();
   };
 
   navigation.setOptions({
@@ -38,35 +52,30 @@ const Detail = ({navigation}) => {
       <ScrollView>
         <Container>
           <TagBox>
-            <Tags>100% Autêntico</Tags>
-            <Tags>Novo</Tags>
+            {shoe.category?.map(tag => (
+              <Tags key={tag}>{tag}</Tags>
+            ))}
           </TagBox>
           <ImageBox>
             <Image
               source={{
-                uri: 'https://static.cloud-boxloja.com/lojas/ym522/produtos/b289af05-69de-4af1-a3ab-7534dc208863.jpg',
+                uri: shoe.url_image,
               }}
             />
           </ImageBox>
           <TextBox>
-            <Title>Jordan 4 Retro 'White Oreo' 2021</Title>
-            <Price>R$ 1150,00</Price>
+            <Title>{shoe.name}</Title>
+            <Price>R$ {shoe.amount}</Price>
           </TextBox>
           <SizeBox>
-            <PriceSmall>R$ 1150,00</PriceSmall>
+            <PriceSmall>R$ {shoe.amount}</PriceSmall>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <SizeText>9</SizeText>
-              <SizeText>10</SizeText>
-              <SizeText>11</SizeText>
-              <SizeText>12</SizeText>
-              <SizeText>12.5</SizeText>
-              <SizeText>13</SizeText>
-              <SizeText>13.5</SizeText>
+              <SizeText>{shoe.size}</SizeText>
             </ScrollView>
           </SizeBox>
           <SizeSmall>Tamanho</SizeSmall>
           <ButtonBox>
-            <Button onPress={toggleModal}>
+            <Button onPress={() => handleBuy(shoe.id)}>
               <Divisor>
                 <TextLeft style={{marginRight: 10}}>Comprar</TextLeft>
                 <TextLeft style={{marginRight: 10, fontSize: 12}}>
@@ -74,151 +83,155 @@ const Detail = ({navigation}) => {
                 </TextLeft>
               </Divisor>
               <View>
-                <TextRight>R$ 1150,00</TextRight>
-                <TextRight style={{fontSize: 12}}>Tamanho 12</TextRight>
+                <TextRight>R$ {shoe.amount}</TextRight>
+                <TextRight style={{fontSize: 12}}>
+                  Tamanho {shoe.size}
+                </TextRight>
               </View>
             </Button>
           </ButtonBox>
         </Container>
-        <Modal backdropColor="#000" isVisible={isModalVisible}>
+      </ScrollView>
+      <Modal backdropColor="#000" isVisible={isModalVisible}>
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+            backgroundColor: '#fff',
+            padding: 5,
+            paddingTop: 50,
+          }}>
           <View
             style={{
-              flex: 1,
-              width: '100%',
-              backgroundColor: '#fff',
-              padding: 5,
-              paddingTop: 50,
+              justifyContent: 'center',
+              alignItems: 'center',
             }}>
+            <Icon name="check-circle" size={64} color="#000" />
+            <Text
+              style={{
+                fontSize: 32,
+                fontWeight: 'bold',
+                color: '#000',
+              }}>
+              Pedido confirmado!
+            </Text>
+          </View>
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderWidth: 1,
+              marginHorizontal: 80,
+              marginVertical: 30,
+            }}>
+            <Image
+              style={{
+                width: 130,
+                height: 130,
+              }}
+              source={{
+                uri: shoe.url_image,
+              }}
+            />
             <View
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
+                flexDirection: 'row',
+                padding: 10,
               }}>
-              <Icon name="check-circle" size={64} color="#000" />
-              <Text
-                style={{
-                  fontSize: 32,
-                  fontWeight: 'bold',
-                  color: '#000',
-                }}>
-                Pedido confirmado!
-              </Text>
-            </View>
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderWidth: 1,
-                marginHorizontal: 80,
-                marginVertical: 30,
-              }}>
-              <Image
-                style={{
-                  width: 130,
-                  height: 130,
-                }}
-                source={{
-                  uri: 'https://static.cloud-boxloja.com/lojas/ym522/produtos/51dc3336-0c5a-4a58-b96f-4ab0fe1ce961.jpg',
-                }}
-              />
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexDirection: 'row',
-                  padding: 10,
-                }}>
-                <View>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: 'bold',
-                      color: '#000',
-                      marginRight: 10,
-                    }}>
-                    R$ 1350,00
-                  </Text>
-                  <Text
-                    style={{
-                      textAlign: 'center',
-                      fontSize: 10,
-                      marginRight: 5,
-                    }}>
-                    Valor da Oferta
-                  </Text>
-                </View>
-                <View>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: 'bold',
-                      color: '#000',
-                      marginLeft: 10,
-                    }}>
-                    12.5
-                  </Text>
-                  <Text
-                    style={{
-                      textAlign: 'center',
-                      fontSize: 10,
-                      marginLeft: 5,
-                    }}>
-                    Tamanho
-                  </Text>
-                </View>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 'bold',
+                    color: '#000',
+                    marginRight: 10,
+                  }}>
+                  R$ {shoe.amount}
+                </Text>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    fontSize: 10,
+                    marginRight: 5,
+                  }}>
+                  Valor da Oferta
+                </Text>
+              </View>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 'bold',
+                    color: '#000',
+                    marginLeft: 10,
+                  }}>
+                  {shoe.size}
+                </Text>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    fontSize: 10,
+                    marginLeft: 5,
+                  }}>
+                  Tamanho
+                </Text>
               </View>
             </View>
-            <TouchableOpacity>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  textDecorationLine: 'underline',
-                  fontSize: 16,
-                }}>
-                ACOMPANHAR PEDIDO
-              </Text>
-            </TouchableOpacity>
+          </View>
+          <TouchableOpacity>
             <Text
               style={{
                 textAlign: 'center',
-                fontSize: 14,
-                marginTop: 10,
+                textDecorationLine: 'underline',
+                fontSize: 16,
               }}>
-              Enviamos a confirmação do pedido via e-mail com informações sobre
-              o pedido
+              ACOMPANHAR PEDIDO
             </Text>
-            <Image
+          </TouchableOpacity>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 14,
+              marginTop: 10,
+            }}>
+            Enviamos a confirmação do pedido via e-mail com informações sobre o
+            pedido
+          </Text>
+          <Image
+            style={{
+              height: 75,
+              width: 75,
+              marginHorizontal: 140,
+              marginVertical: 15,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            source={require('../../assets/images/logo.png')}
+          />
+          <TouchableOpacity
+            style={{
+              height: 50,
+              width: '100%',
+              backgroundColor: '#fff',
+              padding: 10,
+            }}
+            title="Fechar"
+            onPress={toggleModal}>
+            <Text
               style={{
-                height: 75,
-                width: 75,
-                marginHorizontal: 140,
-                marginVertical: 15,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              source={require('../../assets/images/logo.png')}
-            />
-            <Button
-              style={{
-                height: 50,
-                width: '100%',
-                backgroundColor: '#fff',
-                padding: 10,
-              }}
-              title="Fechar"
-              onPress={toggleModal}>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  textDecorationLine: 'underline',
-                  fontSize: 18,
-                }}>
-                Fechar
-              </Text>
-            </Button>
-          </View>
-        </Modal>
-      </ScrollView>
+                textAlign: 'center',
+                textDecorationLine: 'underline',
+                fontSize: 18,
+                fontWeight: 'bold',
+                color: '#000',
+              }}>
+              Fechar
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </>
   );
 };

@@ -9,10 +9,10 @@ export const Container = styled.View`
 `;
 
 export const TagBox = styled.View`
+  width: 100%;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  flex-direction: row;
-  margin-left: -270px;
 `;
 
 export const Tags = styled.Text`
@@ -33,12 +33,12 @@ export const ImageBox = styled.View`
   align-items: center;
   padding: 15px;
   width: 100%;
-  height: 280px;
+  height: 250px;
 `;
 
 export const Image = styled.Image`
   width: 350px;
-  height: 280px;
+  height: 250px;
 `;
 
 export const TextBox = styled.View`
@@ -52,7 +52,7 @@ export const TextBox = styled.View`
 
 export const Title = styled.Text`
   width: 90%;
-  margin-top: -25px;
+  margin-top: -30px;
   margin: 0 1px;
   font-family: 'AdobeCleanBold';
   font-size: 28px;
@@ -84,8 +84,11 @@ export const Price = styled.Text`
 `;
 
 export const SizeBox = styled.View`
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
   height: 200px;
-  width: 100%;
+  text-align: center;
 `;
 
 export const SizeText = styled.Text`
@@ -98,7 +101,6 @@ export const SizeText = styled.Text`
 `;
 
 export const PriceSmall = styled.Text`
-  width: 100%;
   font-family: 'Poppins';
   font-size: 14px;
   font-weight: bold;
