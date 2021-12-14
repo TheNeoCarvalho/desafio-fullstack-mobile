@@ -27,7 +27,6 @@ import BrandItem from '../../components/BrandItem';
 
 import SplashScreen from 'react-native-splash-screen';
 
-import {SplashScreen} from 'react-native-splash-screen';
 const Home = () => {
   const navigation = useNavigation();
   const shoes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
