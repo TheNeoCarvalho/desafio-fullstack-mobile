@@ -60,7 +60,30 @@ export const Card = styled.TouchableOpacity`
   width: 40%;
   justify-content: center;
   align-items: center;
-  flex-direction: 'column';
+  flex-direction: column;
   padding: 5px;
   margin-left: 25px;
+`;
+
+export const CardImage = styled.Image`
+  width: 80%;
+  height: 120px;
+`;
+
+export const CardTitle = styled.Text`
+  font-family: 'OpenSans-Light';
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px;
+  text-align: center;
+`;
+
+export const CardPrice = styled.Text`
+  font-family: 'Poppins';
+  font-size: 22px;
+  font-weight: bold;
+  color: #222;
+  margin-top: 10px;
+  text-align: center;
 `;
