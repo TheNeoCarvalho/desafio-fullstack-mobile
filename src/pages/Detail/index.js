@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
-import axios from 'axios';
+
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/Feather';
+import api from '../../services/api';
 
 import {
   Container,
@@ -40,7 +41,7 @@ const Detail = ({route, navigation}) => {
   }, [shoe]);
 
   const handleBuy = async product_id => {
-    await axios.post(`http://192.168.1.3:3000/order/${product_id}`);
+    await api.post(`/order/${product_id}`);
     toggleModal();
   };
 

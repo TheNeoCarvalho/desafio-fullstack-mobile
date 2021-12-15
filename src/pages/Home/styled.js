@@ -26,6 +26,12 @@ export const SearchGroup = styled.View`
   margin: 0 5px;
 `;
 
+export const Filters = styled.View`
+  justify-content: center;
+  align-items: space-around;
+  flex-direction: column;
+  background-color: #fff;
+`;
 export const FilterCategory = styled.ScrollView`
   width: 100%;
   height: 50px;

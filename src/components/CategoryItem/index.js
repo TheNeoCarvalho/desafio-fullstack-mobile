@@ -1,12 +1,20 @@
-import React from 'react';
-import {Text} from 'react-native';
+import React, {useState} from 'react';
+import {TouchableOpacity} from 'react-native';
 
 import {FilterTitleCategory} from './styled';
 
-const CategoryItem = ({children}) => {
+const CategoryItem = ({children, action}) => {
+  const [search, setSearch] = useState(' ');
+
+  const searchFilter = () => {
+    setSearch(action);
+    action(search);
+  };
   return (
     <>
-      <FilterTitleCategory>{children}</FilterTitleCategory>
+      <TouchableOpacity onPress={searchFilter}>
+        <FilterTitleCategory>{children}</FilterTitleCategory>
+      </TouchableOpacity>
     </>
   );
 };

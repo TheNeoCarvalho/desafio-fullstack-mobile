@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  View,
 } from 'react-native';
 import {
   Container,
@@ -17,16 +18,18 @@ import {
   CardImage,
   CardTitle,
   CardPrice,
+  Filters,
 } from './styled';
 
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
-import axios from 'axios';
 
 import CategoryItem from '../../components/CategoryItem';
 import BrandItem from '../../components/BrandItem';
 
 import SplashScreen from 'react-native-splash-screen';
+
+import api from '../../services/api';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -40,7 +43,7 @@ const Home = () => {
   ];
   const categories = [
     'Novo',
-    'usado',
+    'Usado',
     'Lançamento',
     'Promocional',
     'Homens',
@@ -54,20 +57,23 @@ const Home = () => {
 
   const search = brand => {
     setBrand(brand.toUpperCase());
-    setLoading(false);
   };
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(`http://192.168.1.3:3000/product?search=${brand}`)
-      .then(response => {
-        setShoesList(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.log('error');
-      });
+    const loadProducts = async () => {
+      api
+        .get(`product?search=${brand}`)
+        .then(response => {
+          setShoesList(response.data);
+          setLoading(false);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    };
+    loadProducts();
+
     SplashScreen.hide();
   }, [brand]);
 
@@ -77,31 +83,36 @@ const Home = () => {
       <Search>
         <SearchGroup>
           <Icon name="search" size={24} />
-          <Input placeholder="Pesquisar" />
+          <Input placeholder="Pesquisar" onChangeText={search} />
         </SearchGroup>
         <TouchableOpacity>
           <Icon name="sliders" size={24} />
         </TouchableOpacity>
       </Search>
-      <FilterCategory
-        horizontal
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}>
-        {categories.map((category, index) => (
-          <CategoryItem key={index}>{category}</CategoryItem>
-        ))}
-      </FilterCategory>
+      <Filters>
+        <FilterCategory
+          horizontal
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}>
+          {categories.map((category, index) => (
+            <CategoryItem action={() => search(category)} key={index}>
+              {category}
+            </CategoryItem>
+          ))}
+        </FilterCategory>
 
-      <FilterBrand
-        horizontal
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}>
-        {brands.map((brand, index) => (
-          <BrandItem action={() => search(brand)} key={index}>
-            {brand}
-          </BrandItem>
-        ))}
-      </FilterBrand>
+        <FilterBrand
+          horizontal
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}>
+          {brands.map((brand, index) => (
+            <BrandItem action={() => search(brand)} key={index}>
+              {brand}
+            </BrandItem>
+          ))}
+        </FilterBrand>
+      </Filters>
+
       <ScrollView style={{backgroundColor: '#fff'}}>
         {loading ? (
           <ActivityIndicator

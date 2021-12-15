@@ -122,7 +122,7 @@ export const SizeSmall = styled.Text`
 
 export const ButtonBox = styled.View`
   width: 100%;
-  margin: 10px;
+  margin: 10px 0;
   flex: 1;
   flex-direction: column;
   justify-content: center;
@@ -137,6 +137,7 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
   border-radius: 4px;
   padding: 5px;
+  margin-bottom: 10px;
 `;
 
 export const TextLeft = styled.Text`
