@@ -6,6 +6,7 @@ import Routes from './src/router';
 
 const App = () => {
   SplashScreen.hide();
+  console.disableYellowBox = true;
   return (
     <>
       <Routes />

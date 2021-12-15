@@ -26,10 +26,17 @@ export const SearchGroup = styled.View`
   margin: 0 5px;
 `;
 
+export const Filters = styled.View`
+  justify-content: center;
+  align-items: space-around;
+  flex-direction: column;
+  background-color: #fff;
+`;
 export const FilterCategory = styled.ScrollView`
   width: 100%;
   height: 50px;
-  padding-top: 5px;
+  max-height: 40px;
+  padding: 3px 0;
   padding-bottom: 5px;
   background-color: #fff;
 `;
@@ -37,7 +44,8 @@ export const FilterCategory = styled.ScrollView`
 export const FilterBrand = styled.ScrollView`
   width: 100%;
   height: 45px;
-  padding-top: 5px;
+  max-height: 45px;
+  padding-bottom: 5px;
   background-color: #fff;
   border-bottom-width: 1px;
   border-bottom-style: solid;
@@ -63,11 +71,13 @@ export const Card = styled.TouchableOpacity`
   flex-direction: column;
   padding: 5px;
   margin-left: 25px;
+  background-color: #fff;
 `;
 
 export const CardImage = styled.Image`
   width: 80%;
   height: 120px;
+  background-color: #fff;
 `;
 
 export const CardTitle = styled.Text`
@@ -77,6 +87,7 @@ export const CardTitle = styled.Text`
   color: #333;
   margin-top: 10px;
   text-align: center;
+  background-color: #fff;
 `;
 
 export const CardPrice = styled.Text`
