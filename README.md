@@ -5,7 +5,7 @@ O teste consiste na execução dos tópicos listados abaixo, sendo obrigatórios
 
 **_Mobile_**
 - [x] Desenvolver a tela de Splash;
-- [x] Desenvolver a tela de Home, listando os ténis do backend e respeitando os filtros;
+- [x] Desenvolver a tela de Home, listando os tênis do backend e respeitando os filtros;
 - [x] Desenvolver a tela de Details;
 - [x] Desenvolver a tela de Success.
 
@@ -19,8 +19,8 @@ O teste consiste na execução dos tópicos listados abaixo, sendo obrigatórios
 
 **_Ponto extra_**
 - [ ] Clean Architecture;
-- [x] Docker;
-- [x] Desenvolver o backend com Nestjs(preferível) ou Nodejs.
+- [ ] Docker;
+- [ ] Desenvolver o backend com Nestjs(preferível) ou Nodejs.
 
 **_Prototipo_**
 - Link para o [Prototipo](https://xd.adobe.com/view/805c6555-3e18-4105-98e5-d5486211e920-d50f/)
