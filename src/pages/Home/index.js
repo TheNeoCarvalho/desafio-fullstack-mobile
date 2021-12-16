@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   View,
+  FlatList,
 } from 'react-native';
 import {
   Container,
@@ -113,49 +114,33 @@ const Home = () => {
         </FilterBrand>
       </Filters>
 
-      <ScrollView style={{backgroundColor: '#fff'}}>
+      <Container>
         {loading ? (
           <ActivityIndicator
             style={{
               flex: 1,
               justifyContent: 'center',
               alignItems: 'center',
-              marginTop: '50%',
+              marginTop: '100%',
             }}
             size="large"
             color={'#000'}
           />
         ) : (
-          <Container>
-            {shoesList.length === 0 ? (
-              <Text
-                style={{
-                  width: '100%',
-                  marginTop: '100%',
-                  textAlign: 'center',
-                  fontWeight: 'bold',
-                  fontSize: 20,
-                }}>
-                Nenhum produto encontrado
-              </Text>
-            ) : (
-              shoesList.map((shoe, index) => (
-                <Card
-                  key={index}
-                  onPress={() => navigation.navigate('Detail', {data: shoe})}>
-                  <CardImage
-                    source={{
-                      uri: shoe.url_image,
-                    }}
-                  />
-                  <CardTitle>{shoe.name}</CardTitle>
-                  <CardPrice>R$ {shoe.amount}</CardPrice>
-                </Card>
-              ))
+          <FlatList
+            data={shoesList}
+            numColumns={2}
+            renderItem={({item}) => (
+              <Card onPress={() => navigation.navigate('Detail', {data: item})}>
+                <CardImage source={{uri: item.url_image}} />
+                <CardTitle>{item.name}</CardTitle>
+                <CardPrice>R$ {item.amount}</CardPrice>
+              </Card>
             )}
-          </Container>
+            keyExtractor={item => String(item.id)}
+          />
         )}
-      </ScrollView>
+      </Container>
     </>
   );
 };

@@ -191,32 +191,38 @@ const Detail = ({route, navigation}) => {
               ACOMPANHAR PEDIDO
             </Text>
           </TouchableOpacity>
-          <Text
+          <View
             style={{
-              textAlign: 'center',
-              fontSize: 14,
-              marginTop: 10,
-            }}>
-            Enviamos a confirmação do pedido via e-mail com informações sobre o
-            pedido
-          </Text>
-          <Image
-            style={{
-              height: 75,
-              width: 75,
-              marginHorizontal: 140,
-              marginVertical: 15,
               justifyContent: 'center',
               alignItems: 'center',
-            }}
-            source={require('../../assets/images/logo.png')}
-          />
+            }}>
+            <Text
+              style={{
+                textAlign: 'center',
+                fontSize: 14,
+                marginTop: 10,
+              }}>
+              Enviamos a confirmação do pedido via e-mail com informações sobre
+              o pedido
+            </Text>
+            <Image
+              style={{
+                height: 75,
+                width: 75,
+
+                marginVertical: 15,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              source={require('../../assets/images/logo.png')}
+            />
+          </View>
           <TouchableOpacity
             style={{
-              height: 50,
+              height: 40,
               width: '100%',
               backgroundColor: '#fff',
-              padding: 10,
+              padding: 5,
             }}
             title="Fechar"
             onPress={toggleModal}>

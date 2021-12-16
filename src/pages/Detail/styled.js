@@ -13,6 +13,8 @@ export const TagBox = styled.View`
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  padding-left: 5px;
+  padding-top: 5px;
 `;
 
 export const Tags = styled.Text`
