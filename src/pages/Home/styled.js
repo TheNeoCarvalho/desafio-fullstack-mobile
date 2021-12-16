@@ -65,7 +65,7 @@ export const ButtonFilters = styled.TouchableOpacity`
 `;
 
 export const Card = styled.TouchableOpacity`
-  width: 180px;
+  width: 45%;
   margin: 10px;
   justify-content: center;
   align-items: center;
