@@ -76,11 +76,3 @@ $ npx react-native run-android
 
 ![Gif](./Telas/action.gif)
 
-<br />
-![HomeScreen](https://github.com/TheNeoCarvalho/desafio-fullstack-mobile/../../../../Telas/HomeScreen.png)
-
-
-![DetailScreen](https://github.com/TheNeoCarvalho/desafio-fullstack-mobile/../../../../Telas/DetailScreen.gif)
-
-
-![SuccessScreen](https://github.com/TheNeoCarvalho/desafio-fullstack-mobile/../../../../Telas/SuccessScreen.gif)

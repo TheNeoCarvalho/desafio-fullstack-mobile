@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
@@ -43,9 +43,9 @@ export const FilterCategory = styled.ScrollView`
 
 export const FilterBrand = styled.ScrollView`
   width: 100%;
-  height: 45px;
-  max-height: 45px;
-  padding-bottom: 5px;
+  height: 40px;
+  max-height: 40px;
+  padding: 5px;
   background-color: #fff;
   border-bottom-width: 1px;
   border-bottom-style: solid;
@@ -65,13 +65,11 @@ export const ButtonFilters = styled.TouchableOpacity`
 `;
 
 export const Card = styled.TouchableOpacity`
-  width: 40%;
+  width: 180px;
+  margin: 10px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 5px;
-  margin-left: 25px;
-  background-color: #fff;
 `;
 
 export const CardImage = styled.Image`
