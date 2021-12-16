@@ -100,7 +100,7 @@ const Detail = ({route, navigation}) => {
             width: '100%',
             backgroundColor: '#fff',
             padding: 5,
-            paddingTop: 50,
+            paddingTop: 30,
           }}>
           <View
             style={{
@@ -123,7 +123,7 @@ const Detail = ({route, navigation}) => {
               alignItems: 'center',
               borderWidth: 1,
               marginHorizontal: 80,
-              marginVertical: 30,
+              marginVertical: 20,
             }}>
             <Image
               style={{
@@ -209,10 +209,10 @@ const Detail = ({route, navigation}) => {
               style={{
                 height: 75,
                 width: 75,
-
                 marginVertical: 15,
                 justifyContent: 'center',
                 alignItems: 'center',
+                marginTop: 30,
               }}
               source={require('../../assets/images/logo.png')}
             />
@@ -221,8 +221,8 @@ const Detail = ({route, navigation}) => {
             style={{
               height: 40,
               width: '100%',
-              backgroundColor: '#fff',
               padding: 5,
+              marginTop: 10,
             }}
             title="Fechar"
             onPress={toggleModal}>

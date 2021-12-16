@@ -115,7 +115,18 @@ const Home = () => {
       </Filters>
 
       <Container>
-        {loading ? (
+        {shoesList.length === 0 ? (
+          <Text
+            style={{
+              width: '100%',
+              marginTop: '100%',
+              textAlign: 'center',
+              fontWeight: 'bold',
+              fontSize: 20,
+            }}>
+            Nenhum produto encontrado
+          </Text>
+        ) : loading ? (
           <ActivityIndicator
             style={{
               flex: 1,
