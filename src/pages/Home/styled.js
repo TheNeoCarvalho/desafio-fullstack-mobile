@@ -79,7 +79,7 @@ export const CardImage = styled.Image`
 `;
 
 export const CardTitle = styled.Text`
-  font-family: 'OpenSans-Light';
+  font-family: 'AdobeCleanBold';
   font-size: 15px;
   font-weight: bold;
   color: #333;
@@ -89,7 +89,7 @@ export const CardTitle = styled.Text`
 `;
 
 export const CardPrice = styled.Text`
-  font-family: 'Poppins';
+  font-family: 'AdobeCleanBold';
   font-size: 22px;
   font-weight: bold;
   color: #222;
