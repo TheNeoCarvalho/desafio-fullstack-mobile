@@ -63,8 +63,8 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     const loadProducts = async () => {
-      api
-        .get(`product?search=${brand}`)
+      await api
+        .get(`/product?search=${brand}`)
         .then(response => {
           setShoesList(response.data);
           setLoading(false);
@@ -115,18 +115,7 @@ const Home = () => {
       </Filters>
 
       <Container>
-        {shoesList.length === 0 ? (
-          <Text
-            style={{
-              width: '100%',
-              marginTop: '100%',
-              textAlign: 'center',
-              fontWeight: 'bold',
-              fontSize: 20,
-            }}>
-            Nenhum produto encontrado
-          </Text>
-        ) : loading ? (
+        {loading ? (
           <ActivityIndicator
             style={{
               flex: 1,
